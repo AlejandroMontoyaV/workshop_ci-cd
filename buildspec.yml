@@ -1,10 +1,6 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - npm install -g aws-sam-cli
-
   build:
     commands:
       - sam build
