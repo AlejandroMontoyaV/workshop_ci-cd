@@ -1,6 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+  ProjectName:
+    Type: String
+
 Globals:
   Function:
     Handler: index.handler
@@ -21,7 +25,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      TableName: contact-alejomv
+      TableName: !Sub "${ProjectName}-contacts-${AWS::AccountId}"
       AttributeDefinitions:
         - AttributeName: "email"
           AttributeType: "S"
@@ -38,7 +42,7 @@ Resources:
   ContactApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: contact-api
+      Name: !Sub "${ProjectName}-api"
       EndpointConfiguration: REGIONAL
       StageName: prod
       Cors:
@@ -49,8 +53,8 @@ Resources:
   ContactCreateLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-create
-      CodeUri: build/create
+      FunctionName: !Sub "${ProjectName}-contact-create"
+      CodeUri: src/create
       Role: !GetAtt ContactCreateRole.Arn
       Environment:
         Variables:
@@ -111,8 +115,8 @@ Resources:
   ContactDeleteLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-delete
-      CodeUri: build/delete
+      FunctionName: !Sub "${ProjectName}-contact-delete"
+      CodeUri: src/delete
       Role: !GetAtt ContactDeleteRole.Arn
       Environment:
         Variables:
@@ -172,8 +176,8 @@ Resources:
   ContactGetLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-get
-      CodeUri: build/get
+      FunctionName: !Sub "${ProjectName}-contact-get"
+      CodeUri: src/get
       Role: !GetAtt ContactGetRole.Arn
       Environment:
         Variables:
@@ -232,8 +236,8 @@ Resources:
   ContactUpdateLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: contact-update
-      CodeUri: build/update
+      FunctionName: !Sub "${ProjectName}-contact-update"
+      CodeUri: src/update
       Role: !GetAtt ContactUpdateRole.Arn
       Environment:
         Variables:
