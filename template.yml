@@ -21,7 +21,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      TableName: contact
+      TableName: contact-alejomv
       AttributeDefinitions:
         - AttributeName: "email"
           AttributeType: "S"
