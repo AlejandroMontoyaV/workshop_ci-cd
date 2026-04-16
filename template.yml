@@ -72,9 +72,7 @@ Resources:
   ContactCreateRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
-        - 'ContactCreateRole${region}'
-        - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
+      RoleName: !Sub "${ProjectName}-ContactCreateRole-${AWS::Region}"
       Description: Create contact role
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -134,9 +132,7 @@ Resources:
   ContactDeleteRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
-        - 'ContactDeleteRole${region}'
-        - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
+      RoleName: !Sub "${ProjectName}-ContactDeleteRole-${AWS::Region}"
       Description: Delete contact role
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -195,9 +191,7 @@ Resources:
   ContactGetRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
-        - 'ContactGetRole${region}'
-        - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
+      RoleName: !Sub "${ProjectName}-ContactGetRole-${AWS::Region}"
       Description: Get contact role
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -255,9 +249,7 @@ Resources:
   ContactUpdateRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
-        - 'ContactUpdateRole${region}'
-        - region: !FindInMap [RegionMap, !Ref 'AWS::Region', RegionShortName]
+      RoleName: !Sub "${ProjectName}-ContactUpdateRole-${AWS::Region}"
       Description: Update contact role
       AssumeRolePolicyDocument:
         Version: 2012-10-17
